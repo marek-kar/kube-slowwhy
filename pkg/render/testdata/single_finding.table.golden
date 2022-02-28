@@ -1,0 +1,20 @@
+SEVERITY  ID        CATEGORY           TITLE                    CONFIDENCE
+HIGH      slow-001  pod-health         High Pod Restart Count   95%
+MEDIUM    slow-002  resource-pressure  CPU Throttling Detected  80%
+
+--- slow-001 ---
+Summary: Pod nginx-abc has restarted 12 times in the last hour
+Evidence:
+  [event] Back-off restarting failed container
+         ref: v1/Event/default/nginx-abc.restart
+Next Steps:
+  1. Check container logs
+  2. Review resource limits
+
+--- slow-002 ---
+Summary: Container web in pod frontend-xyz is being CPU throttled
+Evidence:
+  [metric] CPU throttle ratio at 45%
+         ref: container_cpu_cfs_throttled_periods_total
+Next Steps:
+  1. Increase CPU limits

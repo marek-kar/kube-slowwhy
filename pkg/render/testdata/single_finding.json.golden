@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "v1",
+  "findings": [
+    {
+      "schemaVersion": "v1",
+      "id": "slow-001",
+      "title": "High Pod Restart Count",
+      "category": "pod-health",
+      "severity": "high",
+      "confidence": 0.95,
+      "summary": "Pod nginx-abc has restarted 12 times in the last hour",
+      "evidence": [
+        {
+          "type": "event",
+          "ref": "v1/Event/default/nginx-abc.restart",
+          "message": "Back-off restarting failed container",
+          "data": {
+            "restartCount": "12"
+          }
+        }
+      ],
+      "nextSteps": [
+        "Check container logs",
+        "Review resource limits"
+      ],
+      "timestamp": "2023-06-15T10:30:00Z"
+    },
+    {
+      "schemaVersion": "v1",
+      "id": "slow-002",
+      "title": "CPU Throttling Detected",
+      "category": "resource-pressure",
+      "severity": "medium",
+      "confidence": 0.8,
+      "summary": "Container web in pod frontend-xyz is being CPU throttled",
+      "evidence": [
+        {
+          "type": "metric",
+          "ref": "container_cpu_cfs_throttled_periods_total",
+          "message": "CPU throttle ratio at 45%"
+        }
+      ],
+      "nextSteps": [
+        "Increase CPU limits"
+      ],
+      "timestamp": "2023-06-15T10:30:00Z"
+    }
+  ]
+}
